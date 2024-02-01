@@ -6,4 +6,8 @@ scripts/fribidi-clean
 scripts/libass-clean
 scripts/libplacebo-clean
 scripts/mpv-clean
+scripts/vvdec-clean
+scripts/dav1d-clean
+scripts/libjxl-clean
+scripts/fdk-aac-cleans
 rm -rf build_libs

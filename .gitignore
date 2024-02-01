@@ -2,6 +2,9 @@
 /fribidi
 /libass
 /libplacebo
+/dav1d
+/vvdec
+/libjxl
 /mpv
 /build_libs
 /ffmpeg_build

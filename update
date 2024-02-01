@@ -3,24 +3,34 @@ export LC_ALL=C
 
 do_clone()
 {
+    if [[ "$1" == libjxl ]]; then
+        gitOpts="--recursive --shallow-submodules"
+        gitUpdateOpts="--recursive --depth 1 --recommend-shallow"
+    else
+        gitOpts="-v"
+        gitUpdateOpts="-v"
+    fi
     set -ex
     if ! test -e "$1" ; then
-        git clone "$2" "$1"
+        git clone $gitOpts "$2" "$1"
     fi
     (
         cd "$1"
         git remote set-url origin "$2"
         git fetch
-        git submodule update --init
+        git submodule update --init $gitUpdateOpts
     )
 }
 
 do_clone_all()
 {
-    do_clone "ffmpeg"     "https://github.com/FFmpeg/FFmpeg.git"
-    #do_clone "fribidi"    "http://anongit.freedesktop.org/git/fribidi/fribidi.git"
+    do_clone "ffmpeg"     "https://github.com/MartinEesmaa/FFmpeg-VVC"
     do_clone "libass"     "https://github.com/libass/libass.git"
     do_clone "libplacebo" "https://github.com/haasn/libplacebo.git"
+    do_clone "dav1d"      "https://code.videolan.org/videolan/dav1d.git"
+    do_clone "libjxl"     "https://github.com/libjxl/libjxl/"
+    do_clone "vvdec"      "https://github.com/fraunhoferhhi/vvdec/"
+    do_clone "fdk-aac"    "https://github.com/mstorsjo/fdk-aac.git"
     do_clone "mpv"        "https://github.com/mpv-player/mpv.git"
 }
 
@@ -85,7 +95,7 @@ checkout()
 }
 
 # fallback targets: release/master/@foo if no config file
-checkout_ffmpeg=master
+#checkout_ffmpeg=master
 #checkout_fribidi=release
 checkout_libass=master
 checkout_libplacebo=master
@@ -96,7 +106,7 @@ checkout_all()
 {
     set -ex
     do_clone_all
-    checkout ffmpeg $checkout_ffmpeg
+    #checkout ffmpeg $checkout_ffmpeg
     #$checkout fribidi $checkout_fribidi
     checkout libass $checkout_libass
     checkout libplacebo $checkout_libplacebo
@@ -111,7 +121,7 @@ do_update_debian_versions()
 if [ x"$1" != x"--skip-selfupdate" ]; then
     (
         set -ex
-        git pull --rebase
+        git pull
     )
     exec "$0" --skip-selfupdate "$@"
 fi
@@ -120,7 +130,7 @@ shift
 # allow checkout master/release without checking the config files
 case "$1" in
     --master)
-        checkout_ffmpeg="master -"
+        #checkout_ffmpeg="master -"
         #checkout_fribidi="master -"
         checkout_libass="master -"
         checkout_libplacebo="master -"

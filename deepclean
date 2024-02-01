@@ -1,0 +1,4 @@
+#!/bin/sh
+export LC_ALL=C
+
+rm -rf dav1d fdk-aac libjxl vvdec ffmpeg ffmpeg_build libass libplacebo build_libs

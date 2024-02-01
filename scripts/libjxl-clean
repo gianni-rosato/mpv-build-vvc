@@ -1,0 +1,6 @@
+#!/bin/sh
+set -e
+
+if [ -d "libjxl/build" ]; then
+    rm -rf libjxl/build
+fi

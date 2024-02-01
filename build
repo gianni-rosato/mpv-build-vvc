@@ -8,6 +8,14 @@ scripts/libplacebo-config
 scripts/libplacebo-build "$@"
 scripts/libass-config
 scripts/libass-build "$@"
+scripts/fdk-aac-config
+scripts/fdk-aac-build "$@"
+scripts/libjxl-config
+scripts/libjxl-build "$@"
+scripts/dav1d-config
+scripts/dav1d-build "$@"
+scripts/vvdec-config
+scripts/vvdec-build "$@"
 scripts/ffmpeg-config
 scripts/ffmpeg-build "$@"
 scripts/mpv-config

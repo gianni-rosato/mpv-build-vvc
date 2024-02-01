@@ -1,0 +1,6 @@
+#!/bin/sh
+set -e
+
+if [ -d "vvdec/build" ]; then
+    rm -rf vvdec/build vvdec/bin vvdec/lib vvdec/install
+fi

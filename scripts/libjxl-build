@@ -1,0 +1,19 @@
+#!/bin/sh
+set -e
+BUILD="$(pwd)"
+
+case "$PKG_CONFIG_PATH" in
+  '')
+    export PKG_CONFIG_PATH="$BUILD/build_libs/lib/pkgconfig"
+    ;;
+  *)
+    export PKG_CONFIG_PATH="$BUILD/build_libs/lib/pkgconfig:$PKG_CONFIG_PATH"
+    ;;
+esac
+
+pwd
+
+# Revert libjxl to 0.9.1 so FFmpeg recognizes it
+cd libjxl && git reset --hard b8ceae3a6e9d0ffd9efebcbdd04322fcfc502eed && cd ..
+
+cmake --build libjxl/build --target install "$@"
