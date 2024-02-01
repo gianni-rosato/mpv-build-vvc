@@ -4,6 +4,8 @@ export LC_ALL=C
 
 #scripts/fribidi-config
 #scripts/fribidi-build "$@"
+scripts/vvdec-config
+scripts/vvdec-build "$@"
 scripts/libplacebo-config
 scripts/libplacebo-build "$@"
 scripts/libass-config
@@ -14,8 +16,6 @@ scripts/libjxl-config
 scripts/libjxl-build "$@"
 scripts/dav1d-config
 scripts/dav1d-build "$@"
-scripts/vvdec-config
-scripts/vvdec-build "$@"
 scripts/ffmpeg-config
 scripts/ffmpeg-build "$@"
 scripts/mpv-config
