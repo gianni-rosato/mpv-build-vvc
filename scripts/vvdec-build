@@ -12,4 +12,4 @@ case "$PKG_CONFIG_PATH" in
 esac
 
 pwd
-cmake --build vvdec --target install "$@"
+cmake --build ./vvdec/build --target install "$@"
